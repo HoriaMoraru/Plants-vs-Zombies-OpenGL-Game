@@ -1,7 +1,7 @@
-﻿#include "lab_m1/Tema1/objects2D.h"
-#include "lab_m1/Tema1/Tema1.h"
-#include "lab_m1/Tema1/transforms2D.h"
-#include "lab_m1/Tema1/utils.h"
+﻿#include "game/game/objects2D.h"
+#include "game/game/game.h"
+#include "game/game/transforms2D.h"
+#include "game/game/utils.h"
 
 #include <vector>
 #include <iostream>
@@ -16,17 +16,17 @@ using namespace m1;
  */
 
 
-Tema1::Tema1()
+game::game()
 {
     resolution = window->GetResolution();
 }
 
 
-Tema1::~Tema1()
+game::~game()
 {
 }
 
-void Tema1::Init()
+void game::Init()
 {
     auto camera = GetSceneCamera();
     camera->SetOrthographic(0, static_cast<float>(resolution.x), 0, static_cast<float>(resolution.y), 0.01f, 400);
@@ -104,12 +104,12 @@ void Tema1::Init()
 
 
 
-void Tema1::FrameStart()
+void game::FrameStart()
 {
     ClearScreen(glm::vec3(0.3f, 0.3f, 0.3f));
 }
 
-void Tema1::Update(float deltaTimeSeconds)
+void game::Update(float deltaTimeSeconds)
 {
     randomSpawnTime -= deltaTimeSeconds;
     pointsSpawnTime -= deltaTimeSeconds;
@@ -307,7 +307,7 @@ void Tema1::Update(float deltaTimeSeconds)
 }
 
 
-void Tema1::FrameEnd()
+void game::FrameEnd()
 {
     if (lives.empty()) {
         ClearScreen(glm::vec3(0, 0, 0));
@@ -321,7 +321,7 @@ void Tema1::FrameEnd()
  */
 
 
-void Tema1::OnMouseBtnPress(int mouseX, int mouseY, int button, int mods)
+void game::OnMouseBtnPress(int mouseX, int mouseY, int button, int mods)
 {
     mouseY = resolution.y - mouseY;
     if (window->MouseHold(GLFW_MOUSE_BUTTON_LEFT)) {
@@ -365,7 +365,7 @@ void Tema1::OnMouseBtnPress(int mouseX, int mouseY, int button, int mods)
 }
 
 
-void Tema1::OnMouseBtnRelease(int mouseX, int mouseY, int button, int mods)
+void game::OnMouseBtnRelease(int mouseX, int mouseY, int button, int mods)
 {
     mouseY = resolution.y - mouseY;
     int nrPointsToRemove = getNumberOfPointsToRemove(draggedTurretIndex);
@@ -399,7 +399,7 @@ void Tema1::OnMouseBtnRelease(int mouseX, int mouseY, int button, int mods)
     draggedTurretIndex = -1;
 }
 
-void Tema1::OnWindowResize(int width, int height)
+void game::OnWindowResize(int width, int height)
 {
     resolution = glm::ivec2(width, height);
 

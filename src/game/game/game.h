@@ -3,17 +3,17 @@
 #include "components/simple_scene.h"
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
-#include "lab_m1/Tema1/utils.h"
+#include "game/game/utils.h"
 #include <unordered_map>
 
 
 namespace m1
 {
-    class Tema1 : public gfxc::SimpleScene
+    class game : public gfxc::SimpleScene
     {
     public:
-        Tema1();
-        ~Tema1();
+        game();
+        ~game();
 
         void Init() override;
 
